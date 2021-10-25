@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
-
+Route::get('/bookingsearch', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home',[App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::get('search',[App\Http\Controllers\HomeController::class,'search'])->name('search');
@@ -66,3 +66,4 @@ Route::group(['prefix'=>'','namespace'=>'','middleware'=>['is_admin']],function(
 
 Route::get('bookingdetails/{id}/{price}',[App\Http\Controllers\HomeController::class,'bookingDetails']);
 Route::get('confirmBooking/{id}/{id1}/{price}',[App\Http\Controllers\BookingController::class,'confirmBooking']);
+// Route::get('bookingdata',[App\Http\Controllers\HomeController::class,'search']);

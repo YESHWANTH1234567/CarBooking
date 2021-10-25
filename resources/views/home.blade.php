@@ -70,7 +70,6 @@ $(document).ready(function(){
         });
     });
     $('#locations').on('click', 'li a', function(){
-
         $('#pickup').val($(this).text());  
         $('#locations').fadeOut();
         console.log('value');
@@ -101,7 +100,6 @@ $(document).ready(function(){
         $('#locations1').fadeOut();
     });  
 });
-
 </script>
 </div>
 @endsection

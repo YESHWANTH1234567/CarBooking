@@ -56,7 +56,7 @@ class HomeController extends Controller
              ';
             }
             $output .= '</ul>';
-            return  $output;
+            return $output;
         }
     }
     public function bookingData(Request $request)
@@ -64,6 +64,10 @@ class HomeController extends Controller
         $combination=array();
         $source=$request['pickup'];
         $destination=$request['destination'];
+        if($source==$destination)
+        {
+            return back()->with("fail","source and destination should't same");
+        }
         $sourceCoordinates=Location::xCoordinate($source);
         $destinationCoordinates=Location::yCoordinate($destination);
         $distance=round(sqrt(pow($sourceCoordinates['location_X_coordinate']-$destinationCoordinates['location_X_coordinate'],2)+pow($sourceCoordinates['location_Y_coordinate']-$destinationCoordinates['location_Y_coordinate'],2)));

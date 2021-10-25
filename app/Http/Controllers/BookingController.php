@@ -9,6 +9,7 @@ use App\Models\Driver;
 use App\Models\Travel;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailer;
 use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
@@ -36,8 +37,15 @@ class BookingController extends Controller
         $object->driver_address=$driverDetails['driver_address'];
         $object->driver_image=$driverDetails['driver_image'];
         $object->save();
-        Mail::to($userDetails['email'])->send(new BookingMail("hello how are you"));
-        Travel::deleteFunction($id);
-    }
+        $data = [
+            'subject' => 'Hii',
+            'message' => 'Hiiiiiiiiiiii',
+            'files' => '11111',
+        ]; 
+        Travel::deleteFunction($id); 
 
+        // Mail::to($userDetails['email'])->send(new BookingMail($data));
+
+        // $aMail = $mail->queue(new Mailer($data));
+    }
 }

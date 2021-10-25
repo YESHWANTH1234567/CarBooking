@@ -91,7 +91,7 @@ class LocationController extends Controller
     public function bookingStart(Request $request)
     {
         $query = $request->get('query');
-        $filter = Location::where('location_name', 'LIKE', "%".$query."%")->get();
+        $filter = Location::where('location_name', 'like', "%".$query."%")->get();
         $filterResult=array();
         foreach($filter as $fill)
         {
